@@ -24,7 +24,7 @@
 
             <asp:Button ID="btnLogin" runat="server" Text="Iniciar sesión" OnClick="btnLogin_Click" />
 
-            <!--Hola profe el login lo puede hacer con el correo y clave de la tabla usuarios trate de dejar un usuario ya listo en la carpeta de la base de datos-->
+      
         </div>
 
 

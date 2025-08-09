@@ -76,10 +76,10 @@ namespace Proyecto_II_Juan_Pablo_Murillo_Jimenez
             string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 
             using (SqlConnection conexion = new SqlConnection(connectionString))
-            using (SqlCommand comando = new SqlCommand(
-                "INSERT INTO Tecnicos (Nombre, Especialidad)" +
-                "VALUES (@Nombre, @Especialidad)", conexion))
+            using (SqlCommand comando = new SqlCommand("dbo.PA_AgregarTecnico", conexion))
             {
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+
                 comando.Parameters.AddWithValue("@Nombre", ClsTecnicos.nombreTecnico.Trim());
                 comando.Parameters.AddWithValue("@Especialidad", ClsTecnicos.especialidad.Trim());
                 
@@ -118,9 +118,10 @@ namespace Proyecto_II_Juan_Pablo_Murillo_Jimenez
             string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 
             using (SqlConnection conexion = new SqlConnection(connectionString))
-            using (SqlCommand comando = new SqlCommand(
-                "DELETE FROM Tecnicos WHERE TecnicoID = @TecnicoID", conexion))
+            using (SqlCommand comando = new SqlCommand("dbo.PA_EliminarTecnico", conexion))
             {
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+
                 comando.Parameters.AddWithValue(@"TecnicoID", ClsTecnicos.tecnicoID);
 
 
@@ -160,9 +161,10 @@ namespace Proyecto_II_Juan_Pablo_Murillo_Jimenez
             string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 
             using (SqlConnection conexion = new SqlConnection(connectionString))
-            using (SqlCommand comando = new SqlCommand(
-                "UPDATE Tecnicos SET Nombre = @Nombre, Especialidad = @Especialidad WHERE TecnicoID = @TecnicoID", conexion))
+            using (SqlCommand comando = new SqlCommand("dbo.PA_ActualizarTecnico", conexion))
             {
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+
                 comando.Parameters.AddWithValue(@"TecnicoID", ClsTecnicos.tecnicoID);
                 comando.Parameters.AddWithValue("@Nombre", ClsTecnicos.nombreTecnico.Trim());
                 comando.Parameters.AddWithValue("@Especialidad", ClsTecnicos.especialidad.Trim());

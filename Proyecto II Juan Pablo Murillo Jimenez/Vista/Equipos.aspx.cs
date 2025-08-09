@@ -95,12 +95,12 @@ namespace Proyecto_II_Juan_Pablo_Murillo_Jimenez
             string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 
             using (SqlConnection conexion = new SqlConnection(connectionString))
-            using (SqlCommand comando = new SqlCommand(
-                "INSERT INTO equipos (TipoEquipo, modelo, UsuarioID)" +
-                "VALUES (@TipoEquipo, @modelo, @UsuarioID)", conexion))
+            using (SqlCommand comando = new SqlCommand("dbo.PA_AgregarEquipo", conexion))
             {
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+
                 comando.Parameters.AddWithValue("@TipoEquipo", ClsEquipo.tipoEquipo.Trim());
-                comando.Parameters.AddWithValue("@modelo", ClsEquipo.modelo.Trim());
+                comando.Parameters.AddWithValue("@Modelo", ClsEquipo.modelo.Trim());
                 comando.Parameters.AddWithValue("@UsuarioID", ClsUsuario.usuarioID);
 
 
@@ -140,9 +140,10 @@ namespace Proyecto_II_Juan_Pablo_Murillo_Jimenez
             string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 
             using (SqlConnection conexion = new SqlConnection(connectionString))
-            using (SqlCommand comando = new SqlCommand(
-                "DELETE FROM equipos WHERE EquipoID = @EquipoID", conexion))
+            using (SqlCommand comando = new SqlCommand("dbo.PA_EliminarEquipo", conexion))
             {
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+
                 comando.Parameters.AddWithValue(@"EquipoID", ClsEquipo.equipoID);
 
 
@@ -181,12 +182,13 @@ namespace Proyecto_II_Juan_Pablo_Murillo_Jimenez
             string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 
             using (SqlConnection conexion = new SqlConnection(connectionString))
-            using (SqlCommand comando = new SqlCommand(
-                "UPDATE equipos SET TipoEquipo = @TipoEquipo, modelo = @modelo, UsuarioID = @UsuarioID WHERE EquipoID = @EquipoID", conexion))
+            using (SqlCommand comando = new SqlCommand("dbo.PA_ActualizarEquipo", conexion))
             {
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+
                 comando.Parameters.AddWithValue(@"EquipoID", ClsEquipo.equipoID);
                 comando.Parameters.AddWithValue("@TipoEquipo", ClsEquipo.tipoEquipo.Trim());
-                comando.Parameters.AddWithValue("@modelo", ClsEquipo.modelo.Trim());
+                comando.Parameters.AddWithValue("@Modelo", ClsEquipo.modelo.Trim());
                 comando.Parameters.AddWithValue("@UsuarioID", ClsUsuario.usuarioID);
 
                 try

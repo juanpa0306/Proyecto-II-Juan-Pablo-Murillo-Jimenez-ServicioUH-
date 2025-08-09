@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -97,10 +98,10 @@ namespace Proyecto_II_Juan_Pablo_Murillo_Jimenez
             string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 
             using (SqlConnection conexion = new SqlConnection(connectionString))
-            using (SqlCommand comando = new SqlCommand(
-                "INSERT INTO DetallesReparacion (ReparacionID, Descripcion, FechaInicio, FechaFin)" +
-                "VALUES (@ReparacionID, @Descripcion, @FechaInicio, @FechaFin)", conexion))
+            using (SqlCommand comando = new SqlCommand("dbo.PA_AgregarDetalle", conexion))
             {
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+
                 comando.Parameters.AddWithValue("@ReparacionID", ClsReparaciones.reparacionID);
                 comando.Parameters.AddWithValue("@Descripcion", ClsDetalles.Descripcion.Trim());
                 comando.Parameters.AddWithValue("@FechaInicio", ClsDetalles.FechaIn.Trim());
@@ -147,9 +148,10 @@ namespace Proyecto_II_Juan_Pablo_Murillo_Jimenez
             string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 
             using (SqlConnection conexion = new SqlConnection(connectionString))
-            using (SqlCommand comando = new SqlCommand(
-                "DELETE FROM DetallesReparacion WHERE DetalleID = @DetalleID", conexion))
+            using (SqlCommand comando = new SqlCommand("dbo.PA_EliminarDetalle", conexion))
             {
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+
                 comando.Parameters.AddWithValue(@"DetalleID", ClsDetalles.DetalleID);
 
 
@@ -193,9 +195,11 @@ namespace Proyecto_II_Juan_Pablo_Murillo_Jimenez
             string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 
             using (SqlConnection conexion = new SqlConnection(connectionString))
-            using (SqlCommand comando = new SqlCommand(
-                "UPDATE DetallesReparacion SET ReparacionID = @ReparacionID, Descripcion = @Descripcion, FechaInicio = @FechaInicio, FechaFin = @FechaFin WHERE DetalleID = @DetalleID", conexion))
+            using (SqlCommand comando = new SqlCommand("dbo.PA_ActualizarDetalle", conexion))
             {
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+
+
                 comando.Parameters.AddWithValue(@"DetalleID", ClsDetalles.DetalleID);
                 comando.Parameters.AddWithValue("@ReparacionID", ClsReparaciones.reparacionID);
                 comando.Parameters.AddWithValue("@Descripcion", ClsDetalles.Descripcion.Trim());

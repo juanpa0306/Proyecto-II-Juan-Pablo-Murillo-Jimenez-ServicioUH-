@@ -98,10 +98,10 @@ namespace Proyecto_II_Juan_Pablo_Murillo_Jimenez
             string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 
             using (SqlConnection conexion = new SqlConnection(connectionString))
-            using (SqlCommand comando = new SqlCommand(
-                "INSERT INTO reparaciones (EquipoID, FechaSolicitud, Estado)" +
-                "VALUES (@EquipoID, @FechaSolicitud, @Estado)", conexion))
+            using (SqlCommand comando = new SqlCommand("dbo.PA_AgregarReparacion", conexion))
             {
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+
                 comando.Parameters.AddWithValue("@EquipoID", ClsEquipo.equipoID);
                 comando.Parameters.AddWithValue("@FechaSolicitud", ClsReparaciones.fechaSolicitud.Trim());
                 comando.Parameters.AddWithValue("@Estado", ClsReparaciones.estado);
@@ -144,9 +144,10 @@ namespace Proyecto_II_Juan_Pablo_Murillo_Jimenez
             string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 
             using (SqlConnection conexion = new SqlConnection(connectionString))
-            using (SqlCommand comando = new SqlCommand(
-                "DELETE FROM reparaciones WHERE ReparacionID = @ReparacionID", conexion))
+            using (SqlCommand comando = new SqlCommand("dbo.PA_EliminarReparacion", conexion))
             {
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+
                 comando.Parameters.AddWithValue(@"ReparacionID", ClsReparaciones.reparacionID);
 
 
@@ -185,9 +186,10 @@ namespace Proyecto_II_Juan_Pablo_Murillo_Jimenez
             string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 
             using (SqlConnection conexion = new SqlConnection(connectionString))
-            using (SqlCommand comando = new SqlCommand(
-                "UPDATE reparaciones SET EquipoID = @EquipoID, FechaSolicitud = @FechaSolicitud, Estado = @Estado WHERE ReparacionID = @ReparacionID", conexion))
+            using (SqlCommand comando = new SqlCommand("dbo.PA_ActualizarReparacion", conexion))
             {
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+
                 comando.Parameters.AddWithValue(@"ReparacionID", ClsReparaciones.reparacionID);
                 comando.Parameters.AddWithValue("@EquipoID", ClsEquipo.equipoID);
                 comando.Parameters.AddWithValue("@FechaSolicitud", ClsReparaciones.fechaSolicitud.Trim());

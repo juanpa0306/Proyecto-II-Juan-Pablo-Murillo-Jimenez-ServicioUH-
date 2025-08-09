@@ -78,13 +78,13 @@ namespace Proyecto_II_Juan_Pablo_Murillo_Jimenez
         protected global::System.Web.UI.WebControls.TextBox clave;
 
         /// <summary>
-        /// tipoUsuario control.
+        /// ddlTipoUsuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tipoUsuario;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTipoUsuario;
 
         /// <summary>
         /// botAgregar control.

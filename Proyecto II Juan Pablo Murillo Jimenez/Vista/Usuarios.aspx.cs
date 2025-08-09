@@ -18,6 +18,7 @@ namespace Proyecto_II_Juan_Pablo_Murillo_Jimenez
             {
                 LlenarGrid();
                 LlenarDdlUsuario();
+                LlenarDdlTipoUsuario();
             }
         }
 
@@ -56,6 +57,25 @@ namespace Proyecto_II_Juan_Pablo_Murillo_Jimenez
             }
         }
 
+        protected void LlenarDdlTipoUsuario()
+        {
+            ddlTipoUsuario.Items.Clear();
+
+            string constr = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            using (SqlCommand cmd = new SqlCommand("SELECT ID FROM roles", con))
+            {
+                con.Open();
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    while (rdr.Read())
+                    {
+                        ddlTipoUsuario.Items.Add(rdr["ID"].ToString());
+                    }
+                }
+            }
+        }
+
         //--------------Agregar----------------------
         protected void BotAgregar(object sender, EventArgs e)
         {
@@ -68,21 +88,21 @@ namespace Proyecto_II_Juan_Pablo_Murillo_Jimenez
             ClsUsuario.correo = correo.Text;
             ClsUsuario.telefono = telefono.Text;
             ClsUsuario.clave = clave.Text;
-            ClsUsuario.tipoUsuario = tipoUsuario.Text;
+            ClsUsuario.tipoUsuario = ddlTipoUsuario.SelectedValue;
 
 
             string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 
             using (SqlConnection conexion = new SqlConnection(connectionString))
-            using (SqlCommand comando = new SqlCommand(
-                "INSERT INTO usuarios (Nombre, correo, Telefono, clave, tipousuario) " +
-                "VALUES (@nombre, @correo, @Telefono, @clave, @tipoUsuario)", conexion))
+            using (SqlCommand comando = new SqlCommand("dbo.PA_AgregarUsuario", conexion))
             {
-                comando.Parameters.AddWithValue("@nombre", ClsUsuario.nombreuUsuario.Trim());
-                comando.Parameters.AddWithValue("@correo", ClsUsuario.correo.Trim());
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                comando.Parameters.AddWithValue("@Nombre", ClsUsuario.nombreuUsuario.Trim());
+                comando.Parameters.AddWithValue("@Correo", ClsUsuario.correo.Trim());
                 comando.Parameters.AddWithValue("@Telefono", ClsUsuario.telefono.Trim());
-                comando.Parameters.AddWithValue("@clave", ClsUsuario.clave.Trim());
-                comando.Parameters.AddWithValue("@tipoUsuario", ClsUsuario.tipoUsuario.Trim());
+                comando.Parameters.AddWithValue("@Clave", ClsUsuario.clave.Trim());
+                comando.Parameters.AddWithValue("@TipoUsuario", ClsUsuario.tipoUsuario);
 
 
                 try
@@ -95,12 +115,12 @@ namespace Proyecto_II_Juan_Pablo_Murillo_Jimenez
                     correo.Text = string.Empty;
                     telefono.Text = string.Empty;
                     clave.Text = string.Empty;
-                    tipoUsuario.Text = string.Empty;
+                    ddlTipoUsuario.SelectedIndex = 0;
 
                 }
                 catch (Exception ex)
                 {
-
+                 
                 }
             }
         }
@@ -116,7 +136,7 @@ namespace Proyecto_II_Juan_Pablo_Murillo_Jimenez
             ClsUsuario.correo = correo.Text;
             ClsUsuario.telefono = telefono.Text;
             ClsUsuario.clave = clave.Text;
-            ClsUsuario.tipoUsuario = tipoUsuario.Text;
+            ClsUsuario.tipoUsuario = ddlTipoUsuario.SelectedValue;
 
 
 
@@ -124,10 +144,11 @@ namespace Proyecto_II_Juan_Pablo_Murillo_Jimenez
             string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 
             using (SqlConnection conexion = new SqlConnection(connectionString))
-            using (SqlCommand comando = new SqlCommand(
-                "DELETE FROM usuarios WHERE usuarioID = @usuarioID", conexion))
+            using (SqlCommand comando = new SqlCommand("dbo.PA_EliminarUsuario", conexion))
             {
-                comando.Parameters.AddWithValue(@"usuarioID", ClsUsuario.usuarioID);
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                comando.Parameters.AddWithValue(@"UsuarioID", ClsUsuario.usuarioID);
 
 
                 try
@@ -141,7 +162,7 @@ namespace Proyecto_II_Juan_Pablo_Murillo_Jimenez
                     correo.Text = string.Empty;
                     telefono.Text = string.Empty;
                     clave.Text = string.Empty;
-                    tipoUsuario.Text = string.Empty;
+                    ClsUsuario.tipoUsuario = ddlTipoUsuario.SelectedValue;
                 }
                 catch (Exception ex)
                 {
@@ -162,20 +183,21 @@ namespace Proyecto_II_Juan_Pablo_Murillo_Jimenez
             ClsUsuario.correo = correo.Text;
             ClsUsuario.telefono = telefono.Text;
             ClsUsuario.clave = clave.Text;
-            ClsUsuario.tipoUsuario = tipoUsuario.Text;
+            ClsUsuario.tipoUsuario = ddlTipoUsuario.SelectedValue;
 
             string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 
             using (SqlConnection conexion = new SqlConnection(connectionString))
-            using (SqlCommand comando = new SqlCommand(
-                "UPDATE usuarios SET Nombre = @nombre, correo = @correo, Telefono = @Telefono, clave = @clave, tipousuario = @tipoUsuario  WHERE UsuarioID = @usuarioID", conexion))
+            using (SqlCommand comando = new SqlCommand("dbo.PA_ActualizarUsuario", conexion))
             {
-                comando.Parameters.AddWithValue(@"usuarioID", ClsUsuario.usuarioID);
-                comando.Parameters.AddWithValue("@nombre", ClsUsuario.nombreuUsuario.Trim());
-                comando.Parameters.AddWithValue("@correo", ClsUsuario.correo.Trim());
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                comando.Parameters.AddWithValue(@"UsuarioID", ClsUsuario.usuarioID);
+                comando.Parameters.AddWithValue("@Nombre", ClsUsuario.nombreuUsuario.Trim());
+                comando.Parameters.AddWithValue("@Correo", ClsUsuario.correo.Trim());
                 comando.Parameters.AddWithValue("@Telefono", ClsUsuario.telefono.Trim());
-                comando.Parameters.AddWithValue("@clave", ClsUsuario.clave.Trim());
-                comando.Parameters.AddWithValue("@tipoUsuario", ClsUsuario.tipoUsuario.Trim());
+                comando.Parameters.AddWithValue("@Clave", ClsUsuario.clave.Trim());
+                comando.Parameters.AddWithValue("@TipoUsuario", ClsUsuario.tipoUsuario);
 
                 try
                 {
@@ -189,7 +211,7 @@ namespace Proyecto_II_Juan_Pablo_Murillo_Jimenez
                     correo.Text = string.Empty;
                     telefono.Text = string.Empty;
                     clave.Text = string.Empty;
-                    tipoUsuario.Text = string.Empty;
+                    ClsUsuario.tipoUsuario = ddlTipoUsuario.SelectedValue;
                 }
                 catch (Exception ex)
                 {

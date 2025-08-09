@@ -32,7 +32,7 @@
             <asp:TextBox ID="clave" runat="server"></asp:TextBox>
 
             <label>Tipo de usuario</label>
-            <asp:TextBox ID="tipoUsuario" runat="server"></asp:TextBox>
+            <asp:DropDownList ID="ddlTipoUsuario" runat="server"></asp:DropDownList>
 
         </div>
 

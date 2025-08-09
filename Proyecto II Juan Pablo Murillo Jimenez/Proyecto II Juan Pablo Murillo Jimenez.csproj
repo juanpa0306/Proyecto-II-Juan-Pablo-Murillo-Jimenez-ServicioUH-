@@ -68,79 +68,89 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\estilos.css" />
-    <Content Include="Login.aspx" />
-    <Content Include="Tablas-Paginas\Asignaciones.aspx" />
-    <Content Include="Tablas-Paginas\DetallesReparacion.aspx" />
-    <Content Include="Tablas-Paginas\Equipos.aspx" />
-    <Content Include="Menu Principal.aspx" />
-    <Content Include="Tablas-Paginas\Reparaciones.aspx" />
-    <Content Include="Tablas-Paginas\Tecnicos.aspx" />
-    <Content Include="Tablas-Paginas\Usuarios.aspx" />
+    <Content Include="Vista\Login.aspx" />
+    <Content Include="Vista\Menu Principal2.aspx" />
+    <Content Include="Vista\Asignaciones.aspx" />
+    <Content Include="Vista\DetallesReparacion.aspx" />
+    <Content Include="Vista\Equipos.aspx" />
+    <Content Include="Vista\Menu Principal.aspx" />
+    <Content Include="Vista\Reparaciones.aspx" />
+    <Content Include="Vista\Tecnicos.aspx" />
+    <Content Include="Vista\Usuarios.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Alerta Conexion\Conexion.cs" />
     <Compile Include="Base de datos\Base de datos.cs" />
-    <Compile Include="Login.aspx.cs">
+    <Compile Include="Datos %28Clases%29\Cls_Login.cs" />
+    <Compile Include="Vista\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Login.aspx.designer.cs">
+    <Compile Include="Vista\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Tablas-Paginas\Asignaciones.aspx.cs">
+    <Compile Include="Vista\Menu Principal2.aspx.cs">
+      <DependentUpon>Menu Principal2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\Menu Principal2.aspx.designer.cs">
+      <DependentUpon>Menu Principal2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Asignaciones.aspx.cs">
       <DependentUpon>Asignaciones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Tablas-Paginas\Asignaciones.aspx.designer.cs">
+    <Compile Include="Vista\Asignaciones.aspx.designer.cs">
       <DependentUpon>Asignaciones.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Tablas-Paginas\ClsAsignaciones.cs" />
-    <Compile Include="Tablas-Paginas\ClsDetalles.cs" />
-    <Compile Include="Tablas-Paginas\ClsEquipo.cs" />
-    <Compile Include="Tablas-Paginas\ClsReparaciones.cs" />
-    <Compile Include="Tablas-Paginas\ClsTecnicos.cs" />
-    <Compile Include="Tablas-Paginas\ClsUsuario.cs" />
-    <Compile Include="Tablas-Paginas\DetallesReparacion.aspx.cs">
+    <Compile Include="Datos %28Clases%29\ClsAsignaciones.cs" />
+    <Compile Include="Datos %28Clases%29\ClsDetalles.cs" />
+    <Compile Include="Datos %28Clases%29\ClsEquipo.cs" />
+    <Compile Include="Datos %28Clases%29\ClsReparaciones.cs" />
+    <Compile Include="Datos %28Clases%29\ClsTecnicos.cs" />
+    <Compile Include="Datos %28Clases%29\ClsUsuario.cs" />
+    <Compile Include="Vista\DetallesReparacion.aspx.cs">
       <DependentUpon>DetallesReparacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Tablas-Paginas\DetallesReparacion.aspx.designer.cs">
+    <Compile Include="Vista\DetallesReparacion.aspx.designer.cs">
       <DependentUpon>DetallesReparacion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Tablas-Paginas\Equipos.aspx.cs">
+    <Compile Include="Vista\Equipos.aspx.cs">
       <DependentUpon>Equipos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Tablas-Paginas\Equipos.aspx.designer.cs">
+    <Compile Include="Vista\Equipos.aspx.designer.cs">
       <DependentUpon>Equipos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Menu Principal.aspx.cs">
+    <Compile Include="Vista\Menu Principal.aspx.cs">
       <DependentUpon>Menu Principal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Menu Principal.aspx.designer.cs">
+    <Compile Include="Vista\Menu Principal.aspx.designer.cs">
       <DependentUpon>Menu Principal.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tablas-Paginas\Reparaciones.aspx.cs">
+    <Compile Include="Vista\Reparaciones.aspx.cs">
       <DependentUpon>Reparaciones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Tablas-Paginas\Reparaciones.aspx.designer.cs">
+    <Compile Include="Vista\Reparaciones.aspx.designer.cs">
       <DependentUpon>Reparaciones.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Tablas-Paginas\Tecnicos.aspx.cs">
+    <Compile Include="Vista\Tecnicos.aspx.cs">
       <DependentUpon>Tecnicos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Tablas-Paginas\Tecnicos.aspx.designer.cs">
+    <Compile Include="Vista\Tecnicos.aspx.designer.cs">
       <DependentUpon>Tecnicos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Tablas-Paginas\Usuarios.aspx.cs">
+    <Compile Include="Vista\Usuarios.aspx.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Tablas-Paginas\Usuarios.aspx.designer.cs">
+    <Compile Include="Vista\Usuarios.aspx.designer.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>
     </Compile>
   </ItemGroup>

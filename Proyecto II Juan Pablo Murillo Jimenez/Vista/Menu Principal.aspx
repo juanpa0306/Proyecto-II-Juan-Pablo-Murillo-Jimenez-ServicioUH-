@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Menu Principal - Servicio UH</title>
-    <link rel="stylesheet" href="css/estilos.css" />
+    <link rel="stylesheet" href="../css/estilos.css" />
 
 </head>
 <body>
@@ -17,12 +17,12 @@
         <div>
             <ul>
                 <li><a class="active" href="#home">Inicio</a></li>
-                <li><a href="Tablas-Paginas/Usuarios.aspx">Usuarios</a></li>
-                <li><a href="Tablas-Paginas/Equipos.aspx">Equipos</a></li>
-                <li><a href="Tablas-Paginas/Reparaciones.aspx">Reparaciones</a></li>
-                <li><a href="Tablas-Paginas/DetallesReparacion.aspx">Detalles de reparacion</a></li>
-                <li><a href="Tablas-Paginas/Tecnicos.aspx">Tecnicos</a></li>
-                <li><a href="Tablas-Paginas/Asignaciones.aspx">Asignaciones</a></li>
+                <li><a href="Usuarios.aspx">Usuarios</a></li>
+                <li><a href="Equipos.aspx">Equipos</a></li>
+                <li><a href="Reparaciones.aspx">Reparaciones</a></li>
+                <li><a href="DetallesReparacion.aspx">Detalles de reparacion</a></li>
+                <li><a href="Tecnicos.aspx">Tecnicos</a></li>
+                <li><a href="Asignaciones.aspx">Asignaciones</a></li>
             </ul>
         </div>
 

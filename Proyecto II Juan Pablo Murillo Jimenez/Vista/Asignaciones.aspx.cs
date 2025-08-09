@@ -118,10 +118,11 @@ namespace Proyecto_II_Juan_Pablo_Murillo_Jimenez
             string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 
             using (SqlConnection conexion = new SqlConnection(connectionString))
-            using (SqlCommand comando = new SqlCommand(
-                "INSERT INTO Asignaciones (ReparacionID, TecnicoID, FechaAsignacion)" +
-                "VALUES (@ReparacionID, @TecnicoID, @FechaAsignacion)", conexion))
+            using (SqlCommand comando = new SqlCommand("dbo.PA_AgregarAsignacion", conexion))
             {
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+
+
                 comando.Parameters.AddWithValue("@ReparacionID", ClsReparaciones.reparacionID);
                 comando.Parameters.AddWithValue("@TecnicoID", ClsTecnicos.tecnicoID);
                 comando.Parameters.AddWithValue("@FechaAsignacion", ClsAsignaciones.fechaAsignacion.Trim());
@@ -164,9 +165,11 @@ namespace Proyecto_II_Juan_Pablo_Murillo_Jimenez
             string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 
             using (SqlConnection conexion = new SqlConnection(connectionString))
-            using (SqlCommand comando = new SqlCommand(
-                "DELETE FROM Asignaciones WHERE AsignacionID = @AsignacionID", conexion))
+            using (SqlCommand comando = new SqlCommand("dbo.PA_EliminarAsignacion", conexion))
             {
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+
+
                 comando.Parameters.AddWithValue(@"AsignacionID", ClsAsignaciones.asignacionID);
 
 
@@ -208,9 +211,11 @@ namespace Proyecto_II_Juan_Pablo_Murillo_Jimenez
             string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 
             using (SqlConnection conexion = new SqlConnection(connectionString))
-            using (SqlCommand comando = new SqlCommand(
-                "UPDATE Asignaciones SET ReparacionID = @ReparacionID, TecnicoID = @TecnicoID, FechaAsignacion = @FechaAsignacion WHERE AsignacionID = @AsignacionID", conexion))
+            using (SqlCommand comando = new SqlCommand("dbo.PA_ActualizarAsignacion", conexion))
             {
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+
+
                 comando.Parameters.AddWithValue(@"AsignacionID", ClsAsignaciones.asignacionID);
                 comando.Parameters.AddWithValue("@ReparacionID", ClsReparaciones.reparacionID);
                 comando.Parameters.AddWithValue("@TecnicoID", ClsTecnicos.tecnicoID);
